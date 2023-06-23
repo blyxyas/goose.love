@@ -71,8 +71,6 @@ const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
 const bloomPass = new UnrealBloomPass(new THREE.Vector2( 256, 256 ), 0.4);
 composer.addPass(bloomPass);
-const glitchPass = new GlitchPass(100);
-composer.addPass(glitchPass);
 
 function animate(gltf) {
 	requestAnimationFrame(animate);
