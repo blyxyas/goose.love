@@ -50,7 +50,8 @@ Array(2000).fill().forEach(addStar);
 
 const loader = new GLTFLoader();
 loader.load('OrigamiCat.gltf', function (gltf) {
-	gltf.scene.position.y += 50;
+	gltf.scene.position.y += 55;
+	gltf.scene.rotation.y += 4.7;
 	gltf.scene.scale.x += 5;
 	gltf.scene.scale.y += 5;
 	gltf.scene.scale.z += 5;
