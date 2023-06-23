@@ -1,0 +1,38 @@
+canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+main {
+	position: absolute;
+}
+
+.name_wrapper {
+	background-color: white;
+	text-align: center;
+	padding: 8px;
+	border-radius: 15px;
+	width: 40%;
+}
+
+.name{
+	font-size: 72px;
+	font-family: 'Italiana', serif;
+	background: -webkit-linear-gradient(pink, BlueViolet);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.bio {
+	top: 10px;
+	color: white;
+	font-size: 19px;
+	width: 40%;
+}
+
+a {
+	background: -webkit-linear-gradient(pink, BlueViolet);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
