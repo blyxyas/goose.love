@@ -2,6 +2,10 @@ import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
 
 // Initial setup
 
@@ -14,6 +18,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(40);
+const composer = new EffectComposer( renderer );
 
 // Add icosahedron 
 
@@ -60,6 +65,15 @@ loader.load('OrigamiCat.gltf', function (gltf) {
 	console.error(error)
 })
 
+// Post processing
+
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2( 256, 256 ), 0.4);
+composer.addPass(bloomPass);
+const glitchPass = new GlitchPass(100);
+composer.addPass(glitchPass);
+
 function animate(gltf) {
 	requestAnimationFrame(animate);
 
@@ -67,7 +81,7 @@ function animate(gltf) {
 	form.rotation.y += 0.01;
 	form.rotation.z += 0.01;
 	controls.update();
-	renderer.render(scene, camera);
+	composer.render()
 }
 
 animate()
