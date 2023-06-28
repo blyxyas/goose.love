@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && mv dist docs && cp OrigamiCat.gltf docs",
+    "build": "vite build && mv dist docs/.. && cp OrigamiCat.gltf docs",
     "preview": "vite preview"
   },
   "devDependencies": {
