@@ -30,11 +30,30 @@ const form = new THREE.Mesh(geom, material);
 scene.add(form);
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(10, 10, 10);
-const helper2 = new THREE.AxesHelper(20);
-const helper = new THREE.PointLightHelper(pointLight);
 const ambientLight = new THREE.AmbientLight(0xdbdbdb);
 const controls = new OrbitControls(camera, renderer.domElement);
-scene.add(helper2, helper, pointLight, ambientLight);
+scene.add(pointLight, ambientLight);
+
+function applyResponsiveLayout() {
+	const mobile = window.innerWidth <= 768;
+	if (mobile) {
+		form.scale.setScalar(0.55);
+		form.position.y = 8;
+	} else {
+		form.scale.setScalar(1);
+		form.position.y = 0;
+	}
+}
+
+applyResponsiveLayout();
+
+window.addEventListener('resize', () => {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	composer.setSize(window.innerWidth, window.innerHeight);
+	applyResponsiveLayout();
+});
 
 // stars
 
